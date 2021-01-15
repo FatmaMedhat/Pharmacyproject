@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+    /* Make the image fully responsive */
+    .carousel-inner img {
+      width: 100%;
+      height: 100%;
+    }
+   #one{
+   background-image: url('hero_1.jpg' );
+   width:100%;
+   height: "500";
+   
+  
+  }
+  body{
+      background: url('hero_1.jpg')  no-repeat center center ; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      background-color: #fff;
+  }
+  
+  p{
+      color:#fff;
+  }
+  
+  .login-form {
+     background:  repeat scroll 0 0 rgba(0, 0, 0, 0);
+     width:380px;
+     margin: 15% auto;
+     padding: 20px;
+  }
+  .title{font-family: Pacifico;text-decoration: underline;}
+  
+  
+  .form-footer {
+      padding: 15px 40px;	
+  }
+  .bt-login{
+      background-color: #ff8627;
+      color: #ffffff;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      transition: background-color 300ms linear 0s;
+  }
+  .form-signin .form-control{
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-signin .form-control:focus{
+    z-index: 2;
+  }
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-signin input[type="password"] {
+    margin-bottom: 30px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  i{margin-right: 4%;color:#555555}
+  a{text-decoration: none;color:#555555;}
+  </style>
+</head>
+<body>
+
+ 
+
+    
+    <nav class=" py-4 navbar navbar-expand-lg navbar-light bg-light ">
+      
+        <div class="container-fluid">
+          <div class="container">
+          
+            <a class="navbar-brand col-4 js-logo-clone" href="#"><b>PHARMA</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+               
+                  <a class="nav-link active col-2" aria-current="page" href="file:///C:/Users/DELL/Downloads/iti%20sub/b/formfin.htm">HOME</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link col-2"  href="file:///C:/Users/DELL/Downloads/iti%20sub/b/store.html">STORE</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link col-2" href="file:///C:/Users/DELL/Downloads/iti%20sub/b/itemsfinal.html">Buyorsell</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link col-2" href="">CONTACT</a>
+                </li>
+              </ul>
+          </div>
+          
+            
+          </div>
+        </div>
+      
+    </nav>
+ 
+
+    <div class="container">
+	<div class="login-form">
+		<h1 class="title text-center text-primary"><b>Add New items </b></h1>
+		<form id="login-form" method="post" class="form-signin" role="form">
+            
+            <input name="item name" id="item" type="text" class="form-control"placeholder="item name" autofocus> 
+            <br>
+            <input name="quantity" id="quantity" type="number" class="form-control disable" placeholder="quantity">
+            <br>
+            <input name="supplier" id="price" type="text" class="form-control disable" placeholder="supplier name">
+         
+            <!--button onclick="adduser()" class="btn btn-success">sign up</button-->
+            <br>
+            <button onclick="additem()" class="btn btn-success" type="button">BUY</button>
+            <button onclick="sellitem()" class="btn btn-success" type="button">Sell</button>
+            <canvas id="showscreenshot"></canvas>
+            <video id="videoElement" autoplay></video>
+		</form>
+
+	</div>
+</div>
+
+
+
+
+
+<footer > 
+    <p class="  p-4 text-center  text-light  bg-dark">copy right @website<br>
+  </footer>
+<script>
+
+
+var db = openDatabase("pharma","1.0","Items",65535);
+db.transaction(function (tx) { 
+            tx.executeSql('CREATE TABLE IF NOT EXISTS t ( item ,quantity,pic)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS v (date,customerName,type,item,quantity)');
+            //tx.executeSql('INSERT INTO inv (date,customerName,type,item,quantity) VALUES (?,?,?, ?,?)',["getdate()","fatma","buy","item1","QUANTITY"]);
+            //tx.executeSql('drop table  Items'); 
+          //tx.executeSql('drop table  t');
+      // tx.executeSql('delete from  t where rowid=?  ',[11]); 
+       //tx.executeSql('INSERT INTO t ( item, quantity,pic) VALUES (?, ?,?)',["item1","QUANTITY","imgstr"]);
+     });
+
+
+         function additem(){
+			
+			      var item = document.getElementById("item").value;
+            var quantity = document.getElementById("quantity").value;
+            var supplier = document.getElementById("price").value;
+            var video = document.getElementById("videoElement");
+            var canvas = document.getElementById("showscreenshot");
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            today = mm + '/' + dd + '/' + yyyy;
+            alert(item);
+            alert(quantity);
+            alert(price);
+    
+
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({ video: true, audio:true })
+    .then(function (stream) 
+    {
+        video.srcObject = stream;
+    })
+    .catch(function (error)
+    {
+        console.log("Something went wrong!");
+    });
+}
+  canvas.width = 500;
+	canvas.height = 500;
+	canvas.getContext("2d").drawImage(video, 0, 0);
+    var imgstr = canvas.toDataURL("image/webp");
+
+    console.log(imgstr);
+
+            db.transaction(function(tx) {
+// tx.executeSql('INSERT INTO Items ( item, quantity,pic) VALUES (?, ?,?)',[item1,QUANTITY,imgstr]);
+
+tx.executeSql("SELECT item,quantity FROM t", [], function(sqlTransaction, sqlResultSet) {
+var count=0;
+   var rows = sqlResultSet.rows;
+   var len = rows.length;
+   var update=0,insert=0;
+   var l=0;
+   if(len==0){//lw gdwl fady
+    tx.executeSql('INSERT INTO t ( item, quantity,pic) VALUES (?, ?,?)',[item,quantity,imgstr]);
+   }
+   else{
+   for (var i = 0; i < len; i++) {
+       var cur_item = rows[i]; // or u can use the item methid ---> var cur_item = rows.item(i);
+       console.log("the item is : " + cur_item.item + " the quantity is : " + cur_item.quantity);
+       if(cur_item.item==item&& (insert==0)){
+        tx.executeSql('update t set quantity=? where item=?', [parseInt(cur_item.quantity)+parseInt(quantity), item], function(transaction, result) {
+          console.info('Record Updated Successfully!');
+          count+=1;
+          update=1;
+         });
+         break;
+       }else{
+          l++;
+          if(update==0 && l==(len-1)){
+            console.log("ola");
+            
+           tx.executeSql('INSERT INTO t ( item, quantity,pic) VALUES (?, ?,?)',[item,quantity,imgstr]);
+           insert=1;
+           break;
+          }
+       }
+
+       
+   }
+  
+  
+   
+  }
+
+});
+
+
+tx.executeSql('INSERT INTO v (date,customerName,type,item,quantity) VALUES (?,?,?,?,?)',[today,supplier,"buy",item,quantity]);
+});
+
+
+  
+
+
+
+
+ }
+  
+
+
+
+function sellitem(){
+  
+   var item = document.getElementById("item").value
+   var quantity = document.getElementById("quantity").value;
+   var today = new Date();
+   var dd = String(today.getDate()).padStart(2, '0');
+   var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+   var yyyy = today.getFullYear(); 
+   db.transaction(function(tx) {
+     
+    tx.executeSql("SELECT item,quantity FROM t", [], function(sqlTransaction, sqlResultSet) {
+var count=0;
+   var rows = sqlResultSet.rows;
+   var len = rows.length;
+   var update=0,insert=0;
+   var l=0;
+   
+   for (var i = 0; i < len; i++) {
+       var cur_item = rows[i]; // or u can use the item methid ---> var cur_item = rows.item(i);
+       console.log("the item is : " + cur_item.item + " the quantity is : " + cur_item.quantity);
+       if(cur_item.item==item&&quantity<=cur_item.quantity){
+        tx.executeSql('update t set quantity=? where item=?', [parseInt(cur_item.quantity)-parseInt(quantity), item], function(transaction, result) {
+          console.info('Record Updated Successfully!');
+       
+         });
+         break;
+       }else{
+        console.info('not available');
+       }
+
+       
+   }
+  
+  
+   
+  
+
+});
+
+     
+ });
+ db.transaction(function(tx) {
+     console.log("invoices table transaction");
+tx.executeSql('INSERT INTO v (date,customerName,type,item,quantity) VALUES (?,?,?,?,?)',[today,"user","sell",item,quantity]);
+
+   });
+
+
+   
+
+   
+  }         
+
+
+
+
+</script>
+
+
+</body>
+</html>

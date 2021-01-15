@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+  <style>
+  /* Make the image fully responsive */
+  .carousel-inner img {
+    width: 100%;
+    height: 100%;
+  }
+  #one{
+ 
+height: 100%;
+
+}
+  </style>
+</head>
+<body>
+
+ 
+
+    <nav class=" py-4 navbar navbar-expand-lg navbar-light bg-light ">
+      
+        <div class="container-fluid">
+          <div class="container">
+          
+            <a class="navbar-brand col-4 js-logo-clone" href="#"><b>PHARMA</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+               
+                  <a class="nav-link active col-2" aria-current="page" href="file:///C:/Users/DELL/Downloads/iti%20sub/b/formfin.htm">HOME</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link col-2"  href="file:///C:/Users/DELL/Downloads/iti%20sub/b/store.html">STORE</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link col-2" href="file:///C:/Users/DELL/Downloads/iti%20sub/b/itemsfinal.html">BUyORsell</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link col-2" href="">CONTACT</a>
+                </li>
+              </ul>
+          </div>
+          
+            
+          </div>
+        </div>
+      
+    </nav>
+ 
+
+<div class="site-section bg-light " >
+  
+  <div class="container">
+
+    <div class="row">
+        <div class="col-sm-6 col-lg-4 text-center item mb-4">
+          
+          <a href="shop-single.html"> <img id="img1" src="C:\Users\DELL\Downloads\iti sub\b\product_01.png" alt="Image"></a>
+          <h3 class="text-dark"><a id="item1" href="shop-single.html">Bioderma</a></h3>
+          <p class="price"> $55.00</p>
+          <form>
+            Quantity
+            <br><input type="text" id="quantity" /><br/> 
+            </form> 
+            <br>
+          <button onclick="buy()" class="btn btn-success">Buy</button>
+          <button onclick="sell()" class="btn btn-success">Sell</button>
+          <canvas  id="myCanvas" ></canvas>
+
+        </div>
+        <div class="col-sm-6 col-lg-4 text-center item mb-4">
+          <a href="shop-single.html"> <img id="img2"src="C:\Users\DELL\Downloads\iti sub\b\product_02.png" alt="Image"></a>
+          <h3 class="text-dark"><a id="item2" href="shop-single.html"> Piedra</a></h3>
+          <p class="price">$70.00</p>
+          <form>
+            Quantity <br><input type="text" id="quantity2" /><br/> 
+            </form> 
+            <br>
+            <button onclick="buyit()" class="btn btn-success">Buy</button>
+            <button onclick="sellit()" class="btn btn-success">Sell</button>
+            <canvas  id="myCanvas2" ></canvas>
+        
+        </div>
+        <div class="col-sm-6 col-lg-4 text-center item mb-4">
+          <a href="shop-single.html"> <img src="C:\Users\DELL\Downloads\iti sub\b\product_03.png" alt="Image"></a>
+          <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
+          <p class="price">$120.00</p>
+        </div>
+  
+        <div class="col-sm-6 col-lg-4 text-center item mb-4">
+  
+          <a href="shop-single.html"> <img src="C:\Users\DELL\Downloads\iti sub\b\product_04.png" alt="Image"></a>
+          <h3 class="text-dark"><a href="shop-single.html">Cetyl Pure</a></h3>
+          <p class="price"> $20.00</p>
+        </div>
+        <div class="col-sm-6 col-lg-4 text-center item mb-4">
+          <a href="shop-single.html"> <img src="C:\Users\DELL\Downloads\iti sub\b\product_05.png" alt="Image"></a>
+          <h3 class="text-dark"><a href="shop-single.html">CLA Core</a></h3>
+          <p class="price">$38.00</p>
+        </div>
+        <di=v class="col-sm-6 col-lg-4 text-center item mb-4">
+       
+          <a href="shop-single.html"> <img src="C:\Users\DELL\Downloads\iti sub\b\product_06.png" alt="Image"></a>
+          <h3 class="text-dark"><a href="shop-single.html">Poo Pourri</a></h3>
+          <p class="price">$89</p>
+        </div>
+
+       
+      
+  </div>
+ </div>
+</div>
+ 
+
+
+
+
+
+<footer > 
+    <p class="  p-4 text-center  text-light  bg-dark">copy right @website<br>
+  </footer>
+<script>
+
+
+var db = openDatabase("pharma","1.0","Items",65535);
+db.transaction(function (tx) { 
+  tx.executeSql('CREATE TABLE IF NOT EXISTS t ( item ,quantity,pic)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS v (date,customerName,type,item,quantity)');
+          //tx.executeSql('INSERT INTO Items (item,quantity,pic,item,quantity) VALUES (?,?,?, ?,?)',["getdate()","fatma","buy","item1","QUANTITY"]);
+          //  tx.executeSql('drop table  Invoice'); 
+            //tx.executeSql('drop table  Items');
+     // tx.executeSql('delete from  Items where rowid=?  ',[4]); 
+     });
+     
+    /* db.transaction(function (tx) { 
+      tx.executeSql('CREATE TABLE IF NOT EXISTS invoices (date,customer_name,type item,quantity)');
+
+        // tx.executeSql('delete from  Items where rowid=?  ',[3]); 
+     });*/
+
+function buy(){
+   
+      
+			var item1 = document.getElementById("item1").innerHTML//document.getElementById("item1").value;
+      var QUANTITY = document.getElementById("quantity").value;
+      var c = document.getElementById("myCanvas");
+      var ctx = c.getContext("2d");
+      var img = new Image();
+      img.onload = function() {
+        c.width = $('#img1')[0].width;
+        c.height = $('#img1')[0].height;
+        ctx.drawImage(img, 0, 0);
+         };
+      img.src = $('#img1')[0].src;
+      var imgstr= c.toDataURL();
+     console.log(c.toDataURL());
+     var today = new Date();
+     var dd = String(today.getDate()).padStart(2, '0');
+     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+
+       today = mm + '/' + dd + '/' + yyyy;
+			//db.transaction(function (tx) { 
+      alert(`You have bought  item from ${item1}`);
+            //tx.executeSql('INSERT INTO Items ( item, quantity,pic) VALUES (?, ?,?)',[item1,QUANTITY,imgstr]);
+////////////////////////////////////////////////
+db.transaction(function(tx) {
+// tx.executeSql('INSERT INTO Items ( item, quantity,pic) VALUES (?, ?,?)',[item1,QUANTITY,imgstr]);
+
+tx.executeSql("SELECT item,quantity FROM t", [], function(sqlTransaction, sqlResultSet) {
+var count=0;
+   var rows = sqlResultSet.rows;
+   var len = rows.length;
+   var update=0,insert=0;
+   var l=0;
+   if(len==0){//lw gdwl fady
+    tx.executeSql('INSERT INTO t ( item, quantity,pic) VALUES (?, ?,?)',[item1,QUANTITY,imgstr]);
+   }
+   else{
+   for (var i = 0; i < len; i++) {
+       var cur_item = rows[i]; // or u can use the item methid ---> var cur_item = rows.item(i);
+       console.log("the item is : " + cur_item.item + " the quantity is : " + cur_item.quantity);
+       if(cur_item.item==item1&& (insert==0)){
+        tx.executeSql('update t set quantity=? where item=?', [parseInt(cur_item.quantity)+parseInt(QUANTITY), item1], function(transaction, result) {
+          console.info('Record Updated Successfully!');
+          count+=1;
+          update=1;
+         });
+         break;
+       }else{
+          l++;
+          if(update==0 && l==(len-1)){
+            console.log("o");
+            
+           tx.executeSql('INSERT INTO t ( item, quantity,pic) VALUES (?, ?,?)',[item1,QUANTITY,imgstr]);
+           insert=1;
+           break;
+          }
+       }
+
+       
+   }
+  
+  
+   
+  }
+
+});
+
+
+tx.executeSql('INSERT INTO v (date,customerName,type,item,quantity) VALUES (?,?,?,?,?)',[today,"supplier","buy",item1,QUANTITY]);
+});
+   
+
+}
+
+
+
+
+function sell(){
+     
+      var item1 = document.getElementById("item1").innerHTML
+			var QUANTITY = document.getElementById("quantity").value;
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear(); 
+      db.transaction(function(tx) {
+     
+     tx.executeSql("SELECT item,quantity FROM t", [], function(sqlTransaction, sqlResultSet) {
+ var count=0;
+    var rows = sqlResultSet.rows;
+    var len = rows.length;
+    var update=0,insert=0;
+    var l=0;
+    
+    for (var i = 0; i < len; i++) {
+        var cur_item = rows[i]; // or u can use the item methid ---> var cur_item = rows.item(i);
+        console.log("the item is : " + cur_item.item + " the quantity is : " + cur_item.quantity);
+        if(cur_item.item==item1&&QUANTITY<=cur_item.quantity){
+         tx.executeSql('update t set quantity=? where item=?', [parseInt(cur_item.quantity)-parseInt(QUANTITY), item1], function(transaction, result) {
+           console.info('Record Updated Successfully!');
+        
+          });
+          break;
+        }else{
+         console.info('not available');
+        }
+ 
+        
+    }
+   
+   
+    
+   
+ 
+ });
+ 
+      
+  });
+  db.transaction(function(tx) {
+      console.log("invoices table transaction");
+ tx.executeSql('INSERT INTO v (date,customername,type,item,quantity) VALUES (?,?,?,?,?)',[today,"user","sell",item1,QUANTITY]);
+ 
+    });
+			
+     }
+  function buyit(){
+   
+  
+    var item2 = document.getElementById("item2").innerHTML//document.getElementById("item1").value;
+      var QUANTITY2 = document.getElementById("quantity2").value;
+      var c = document.getElementById("myCanvas2");
+      var ctx = c.getContext("2d");
+      var img = new Image();
+      img.onload = function() {
+        c.width = $('#img2')[0].width;
+        c.height = $('#img2')[0].height;
+        ctx.drawImage(img, 0, 0);
+         };
+      img.src = $('#img2')[0].src;
+      var imgstr= c.toDataURL();
+     console.log(c.toDataURL());
+     var today = new Date();
+     var dd = String(today.getDate()).padStart(2, '0');
+     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+
+       today = mm + '/' + dd + '/' + yyyy;
+			//db.transaction(function (tx) { 
+      alert(`You have bought  item from ${item2}`);
+            //tx.executeSql('INSERT INTO Items ( item, quantity,pic) VALUES (?, ?,?)',[item1,QUANTITY,imgstr]);
+////////////////////////////////////////////////
+db.transaction(function(tx) {
+// tx.executeSql('INSERT INTO Items ( item, quantity,pic) VALUES (?, ?,?)',[item1,QUANTITY,imgstr]);
+
+tx.executeSql("SELECT item,quantity FROM t", [], function(sqlTransaction, sqlResultSet) {
+var count=0;
+   var rows = sqlResultSet.rows;
+   var len = rows.length;
+   var update=0,insert=0;
+   var l=0;
+   if(len==0){//lw gdwl fady
+    tx.executeSql('INSERT INTO t ( item, quantity,pic) VALUES (?, ?,?)',[item2,QUANTITY2,imgstr]);
+   }
+   else{
+   for (var i = 0; i < len; i++) {
+       var cur_item = rows[i]; // or u can use the item methid ---> var cur_item = rows.item(i);
+       console.log("the item is : " + cur_item.item + " the quantity is : " + cur_item.quantity);
+       if(cur_item.item==item1&& (insert==0)){
+        tx.executeSql('update t set quantity=? where item=?', [parseInt(cur_item.quantity)+parseInt(QUANTITY2), item2], function(transaction, result) {
+          console.info('Record Updated Successfully!');
+          count+=1;
+          update=1;
+         });
+         break;
+       }else{
+          l++;
+          if(update==0 && l==(len-1)){
+            console.log("o");
+            
+           tx.executeSql('INSERT INTO t ( item, quantity,pic) VALUES (?, ?,?)',[item2,QUANTITY2,imgstr]);
+           insert=1;
+           break;
+          }
+       }
+
+       
+   }
+  
+  
+   
+  }
+
+});
+
+
+tx.executeSql('INSERT INTO v (date,customerName,type,item,quantity) VALUES (?,?,?,?,?)',[today,"supplier","buy",item2,QUANTITY2]);
+});
+   
+
+}
+
+function sellit(){
+     
+     var item2 = document.getElementById("item2").innerHTML
+     var QUANTITY2 = document.getElementById("quantity2").value;
+     var today = new Date();
+     var dd = String(today.getDate()).padStart(2, '0');
+     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+     var yyyy = today.getFullYear(); 
+     db.transaction(function(tx) {
+     
+     tx.executeSql("SELECT item,quantity FROM t", [], function(sqlTransaction, sqlResultSet) {
+ var count=0;
+    var rows = sqlResultSet.rows;
+    var len = rows.length;
+    var update=0,insert=0;
+    var l=0;
+    
+    for (var i = 0; i < len; i++) {
+        var cur_item = rows[i]; // or u can use the item methid ---> var cur_item = rows.item(i);
+        console.log("the item is : " + cur_item.item + " the quantity is : " + cur_item.quantity);
+        if(cur_item.item==item2&&QUANTITY2<=cur_item.quantity){
+         tx.executeSql('update t set quantity=? where item=?', [parseInt(cur_item.quantity)-parseInt(QUANTITY2), item2], function(transaction, result) {
+           console.info('Record Updated Successfully!');
+        
+          });
+          break;
+        }else{
+         console.info('not available');
+        }
+ 
+        
+    }
+   
+   
+    
+   
+ 
+ });
+ 
+      
+  });
+  db.transaction(function(tx) {
+      console.log("invoices table transaction");
+ tx.executeSql('INSERT INTO v (date,customername,type,item,quantity) VALUES (?,?,?,?,?)',[today,"user","sell",item2,QUANTITY2]);
+ 
+    });
+			
+  
+     
+
+     
+    }
+ 
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
